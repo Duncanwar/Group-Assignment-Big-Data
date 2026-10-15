@@ -1,0 +1,10 @@
+data/readings.csv
+data/
+__pycache__/
+.Rhistory
+data/
+__pycache__/
+.Rhistory
+.DS_Store
+__MACOSX/
+*.zip

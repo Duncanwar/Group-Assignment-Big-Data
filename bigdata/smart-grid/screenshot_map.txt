@@ -1,0 +1,52 @@
+# screenshot_map.txt - which screenshot goes under which subsection.
+# Built by reading the text inside each screenshot (OCR) - see notes at the bottom.
+# Format:  SECTION: file, file, ...   (full name without .png, or a unique part of it)
+
+# ---- Section 1 ----
+1.1: 1-1-1-postgres, 1-1-2-emqx-broker, 1-1-3-emqx-dashboard, 1-1-4-windows-clock, 1-1-4-hardware, 1-1-5postgres, 1-1-6-wsl-version, 1-1-7-wsl-resources, 1-1-8-wsl-windows
+1.2: 1-1-2-1-run_create, 1-1-2-2-describe_energy_live, 1-1-2-2-describe_energy_readings, 1-1-2-3-describe_meters, 1-2-5-chunk, 1-1-2-5-confirming, 1-1-2-6-Sample, 1-1-2-7-Group
+1.3: Screenshot 2026-10-12 225743, Screenshot 2026-10-12 225731, Screenshot 2026-10-12 230006, Screenshot 2026-10-12 230108
+
+# ---- Section 2 ----
+2.1: Screenshot 2026-10-12 201956, Screenshot 2026-10-12 220117
+2.2: Screenshot 2026-10-12 222714, Screenshot 2026-10-12 222736
+2.3: Screenshot 2026-10-12 224232, Screenshot 2026-10-12 224308
+
+# ---- Section 3 ----
+3.1: Screenshot 2026-10-13 112818, Screenshot 2026-10-13 112839, Screenshot 2026-10-13 113242, Screenshot 2026-10-13 113301
+3.2: Screenshot 2026-10-13 114407, Screenshot 2026-10-13 114543, Screenshot 2026-10-13 114608, Screenshot 2026-10-13 114719, Screenshot 2026-10-13 114746, Screenshot 2026-10-13 114838, Screenshot 2026-10-13 114929, Screenshot 2026-10-13 120218
+
+# ---- Section 4 ----
+4.1: Screenshot 2026-10-13 205227, Screenshot 2026-10-13 205249, Screenshot 2026-10-13 205304, Screenshot 2026-10-13 210420, Screenshot 2026-10-13 210938, Screenshot 2026-10-13 210954, Screenshot 2026-10-13 211028
+4.2: Screenshot 2026-10-13 210420, Screenshot 2026-10-13 210432, Screenshot 2026-10-13 211009
+4.3: Screenshot 2026-10-13 211358, Screenshot 2026-10-13 211412, Screenshot 2026-10-14 100413, Screenshot 2026-10-13 211731, Screenshot 2026-10-13 211746, Screenshot 2026-10-13 211803, Screenshot 2026-10-13 211821, Screenshot 2026-10-13 211900, Screenshot 2026-10-13 211921, Screenshot 2026-10-13 212211
+
+# ---- Section 5 ----
+5.1: Screenshot 2026-10-14 110452, Screenshot 2026-10-14 110512
+5.2: Screenshot 2026-10-14 110535, Screenshot 2026-10-14 110604
+5.3: Screenshot 2026-10-14 110604
+5.4: Screenshot 2026-10-14 111935, Screenshot 2026-10-14 111957
+
+# ---- Section 6 ----
+6.1: Screenshot 2026-10-14 112809, Screenshot 2026-10-14 112912, Screenshot 2026-10-14 112931, Screenshot 2026-10-14 114802, Screenshot 2026-10-14 114823, Screenshot 2026-10-14 114841, Screenshot 2026-10-14 114853, Screenshot 2026-10-14 114913, Screenshot 2026-10-14 115041, Screenshot 2026-10-14 115103, Screenshot 2026-10-14 115115
+6.2: Screenshot 2026-10-14 114925, Screenshot 2026-10-14 114938, Screenshot 2026-10-14 114950, Screenshot 2026-10-14 115003, Screenshot 2026-10-14 115014, Screenshot 2026-10-14 115030
+
+# ---- Section 7 ----
+7.1: Screenshot 2026-10-14 123548, Screenshot 2026-10-14 154719
+7.2: Screenshot 2026-10-14 154704
+7.3: Screenshot 2026-10-14 155336
+7.4: Screenshot 2026-10-14 155649, Screenshot 2026-10-14 155701, Screenshot 2026-10-14 160606, Screenshot 2026-10-14 160630
+
+# ---- Section 8 ---- (one run prints 8.1 to 8.4, so some screenshots serve several sections)
+8.1: Screenshot 2026-10-14 212920, Screenshot 2026-10-14 212937
+8.2: Screenshot 2026-10-14 212937
+8.3: Screenshot 2026-10-14 212937, Screenshot 2026-10-14 212954
+8.4: Screenshot 2026-10-14 212954
+
+# ---- Section 9 ----
+# 9.2: (no screenshot yet - see notes)
+
+# ---- Deliberately NOT used ----
+# Screenshot 2026-10-14 164119   unrelated image (a quote reference, not assignment evidence)
+# Screenshot 2026-10-12 213958   duplicate of 201956 (same capture output)
+# Screenshot 2026-10-12 171101 / 171112 / 214020   publisher code and an earlier publisher start; 1.3 uses the final run

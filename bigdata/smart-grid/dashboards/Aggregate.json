@@ -1,0 +1,234 @@
+{
+  "uid": "aggregate-dash",
+  "title": "Aggregate",
+  "tags": [
+    "assignment-i",
+    "agg"
+  ],
+  "schemaVersion": 39,
+  "version": 1,
+  "editable": true,
+  "timezone": "Africa/Kigali",
+  "refresh": "",
+  "time": {
+    "from": "2026-09-21T22:00:00.000Z",
+    "to": "2026-09-28T22:00:00.000Z"
+  },
+  "templating": {
+    "list": [
+      {
+        "name": "start_date",
+        "label": "Start day (CAT, inclusive)",
+        "type": "textbox",
+        "query": "2026-09-22",
+        "current": {
+          "text": "2026-09-22",
+          "value": "2026-09-22"
+        },
+        "options": [
+          {
+            "selected": true,
+            "text": "2026-09-22",
+            "value": "2026-09-22"
+          }
+        ]
+      },
+      {
+        "name": "end_date",
+        "label": "End day (CAT, exclusive)",
+        "type": "textbox",
+        "query": "2026-09-29",
+        "current": {
+          "text": "2026-09-29",
+          "value": "2026-09-29"
+        },
+        "options": [
+          {
+            "selected": true,
+            "text": "2026-09-29",
+            "value": "2026-09-29"
+          }
+        ]
+      },
+      {
+        "name": "meter_id",
+        "label": "Meter",
+        "type": "textbox",
+        "query": "1000000000",
+        "current": {
+          "text": "1000000000",
+          "value": "1000000000"
+        },
+        "options": [
+          {
+            "selected": true,
+            "text": "1000000000",
+            "value": "1000000000"
+          }
+        ]
+      }
+    ]
+  },
+  "panels": [
+    {
+      "id": 1,
+      "title": "Hourly regional energy (kWh)",
+      "type": "timeseries",
+      "description": "Aggregate mode: reads continuous aggregate views",
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 9
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "format": "time_series",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT c.bucket AS \"time\",\n       c.region AS metric,\n       sum(c.sum_energy_kwh) AS \"Energy (kWh)\"\nFROM cagg_hourly_region c\nWHERE c.bucket >= '$start_date'::date::timestamp AT TIME ZONE 'Africa/Kigali'\n  AND c.bucket < '$end_date'::date::timestamp AT TIME ZONE 'Africa/Kigali'\nGROUP BY 1, 2\nORDER BY 1, 2"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "kwatth"
+        },
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 2,
+      "title": "Daily network energy (kWh)",
+      "type": "barchart",
+      "description": "Aggregate mode: reads continuous aggregate views",
+      "gridPos": {
+        "x": 0,
+        "y": 9,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT (c.bucket AT TIME ZONE 'Africa/Kigali')::date::text AS day,\n       sum(c.sum_energy_kwh) AS \"Energy (kWh)\"\nFROM cagg_15min_region c\nWHERE c.bucket >= '$start_date'::date::timestamp AT TIME ZONE 'Africa/Kigali'\n  AND c.bucket < '$end_date'::date::timestamp AT TIME ZONE 'Africa/Kigali'\nGROUP BY 1\nORDER BY 1"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "kwatth"
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "showLegend": false
+        },
+        "showValue": "auto"
+      }
+    },
+    {
+      "id": 3,
+      "title": "Network energy per seven-day period (kWh)",
+      "type": "barchart",
+      "description": "Aggregate mode: reads continuous aggregate views",
+      "gridPos": {
+        "x": 12,
+        "y": 9,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT to_char(DATE '2026-09-01' + 7 * (((c.bucket AT TIME ZONE 'Africa/Kigali')::date - DATE '2026-09-01') / 7), 'YYYY-MM-DD') AS period_start,\n       sum(c.sum_energy_kwh) AS \"Energy (kWh)\"\nFROM cagg_15min_region c\nWHERE c.bucket >= '$start_date'::date::timestamp AT TIME ZONE 'Africa/Kigali'\n  AND c.bucket < '$end_date'::date::timestamp AT TIME ZONE 'Africa/Kigali'\nGROUP BY 1\nORDER BY 1"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "kwatth"
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "showLegend": false
+        },
+        "showValue": "auto"
+      }
+    },
+    {
+      "id": 4,
+      "title": "Daily energy for selected meter (kWh)",
+      "type": "barchart",
+      "description": "Aggregate mode: reads continuous aggregate views",
+      "gridPos": {
+        "x": 0,
+        "y": 17,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT (c.bucket AT TIME ZONE 'Africa/Kigali')::date::text AS day,\n       sum(c.sum_energy_kwh) AS \"Energy (kWh)\"\nFROM cagg_daily_meter c\nWHERE c.meter_id = $meter_id\n  AND c.bucket >= '$start_date'::date::timestamp AT TIME ZONE 'Africa/Kigali'\n  AND c.bucket < '$end_date'::date::timestamp AT TIME ZONE 'Africa/Kigali'\nGROUP BY 1\nORDER BY 1"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "kwatth"
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "showLegend": false
+        },
+        "showValue": "auto"
+      }
+    },
+    {
+      "id": 5,
+      "title": "Completeness by region (%)",
+      "type": "barchart",
+      "description": "Aggregate mode: reads continuous aggregate views",
+      "gridPos": {
+        "x": 12,
+        "y": 17,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "WITH reg AS (SELECT region, count(*) AS meters FROM meters GROUP BY region),\nobs AS (\n  SELECT c.region, sum(c.reading_count) AS observed\n  FROM cagg_15min_region c\n  WHERE c.bucket >= '$start_date'::date::timestamp AT TIME ZONE 'Africa/Kigali'\n  AND c.bucket < '$end_date'::date::timestamp AT TIME ZONE 'Africa/Kigali'\n  GROUP BY c.region)\nSELECT reg.region,\n       100.0 * obs.observed / (reg.meters * (('$end_date'::date - '$start_date'::date) * 96)) AS \"Completeness (%)\"\nFROM reg\nJOIN obs ON obs.region = reg.region\nORDER BY reg.region"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "showLegend": false
+        },
+        "showValue": "auto"
+      }
+    }
+  ]
+}

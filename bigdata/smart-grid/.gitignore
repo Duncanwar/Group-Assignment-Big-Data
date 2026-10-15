@@ -1,0 +1,12 @@
+# Full generated dataset stays local (regenerate with capture_to_csv.py)
+data/
+# Runtime logs
+logs/
+__pycache__/
+*.pyc
+*.zip
+# Never commit secrets
+.env
+*.pem
+*.key
+data/readings.csv

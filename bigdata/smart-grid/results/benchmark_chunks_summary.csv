@@ -1,0 +1,16 @@
+query,table,median_ms,min_ms,max_ms,rows,results_match_reference
+Q1,energy_readings,71.1,61.2,179.6,24,True
+Q1,energy_readings_3h,76.6,74.1,80.7,24,True
+Q1,energy_readings_week,77.5,68.1,184.3,24,True
+Q2,energy_readings,147.0,138.6,161.6,10,True
+Q2,energy_readings_3h,163.5,143.4,201.0,10,True
+Q2,energy_readings_week,202.6,188.3,226.2,10,True
+Q3,energy_readings,583.7,535.3,618.9,4000,True
+Q3,energy_readings_3h,3019.5,2957.4,3065.3,4000,True
+Q3,energy_readings_week,537.8,509.0,556.6,4000,True
+Q4,energy_readings,2.7,2.0,3.7,1,True
+Q4,energy_readings_3h,8.4,7.1,9.4,1,True
+Q4,energy_readings_week,2.2,1.4,2.9,1,True
+Q5,energy_readings,401.6,391.0,451.2,1,True
+Q5,energy_readings_3h,365.1,330.6,394.5,1,True
+Q5,energy_readings_week,411.7,399.3,440.3,1,True

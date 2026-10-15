@@ -1,0 +1,7 @@
+feature,lag_or_window_hours,earliest_usable_target
+"hour_c, is_weekend (calendar)",0,2026-09-01 00:00:00+02:00
+region (category),0,2026-09-01 00:00:00+02:00
+"lag_24h (previous day, same hour)",24,2026-09-02 00:00:00+02:00
+"lag_48h (two days earlier, same hour)",48,2026-09-03 00:00:00+02:00
+lag_168h (same hour one week earlier),168,2026-09-08 00:00:00+02:00
+prev_day_mean_24h (mean of previous day's 24 hours),24,2026-09-02 00:00:00+02:00
